@@ -85,13 +85,16 @@ function drawBlocks(){
 
 //Drawing score on the canvas
 function drawScore(){
-    
+    console.log(score);
 }
 
 //Function to move paddle on the canvas
 function movePaddle(){
     paddle.x += paddle.dx;
-
+if(paddle.x<0)
+paddle.x+=paddle.dx;
+if(paddle.x>canvas.width)
+paddle.x-=paddle.dx;
     //Surrounding wall detection
     //To the right side
     
@@ -105,7 +108,10 @@ function movePaddle(){
 function moveBall(){
     ball.x += ball.dx;
     ball.y += ball.dy;
-
+if(ball.x>canvas.width)
+ball.x-=ball.dx;
+if(ball.y>=canvas.height)
+ball.y-=ball.dy;
     //Surrounding wall collision detection(x-axis)
     //right and left walls
     
@@ -189,9 +195,9 @@ update();
 //Targetting the right and left arrow keys
 function keyDown(e){
     if(e.key === 'Right' || e.key === 'ArrowRight'){
-
+paddle.x+=2;
     } else if(e.key === 'Left' || e.key === 'ArrowLeft'){
-
+paddle.x-=2;
     } 
 }
 
